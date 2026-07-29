@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniel Zhou • Quantitative Trader &amp; Engineer</title>
+    <meta name="description" content="Daniel Zhou — Quantitative trader and software engineer building AI-powered trading systems, algorithmic strategies, and advanced TradingView indicators.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+        
+        :root {
+            --primary: #0f172a;
+        }
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .font-display {
+            font-family: 'Space Grotesk', 'Inter', system_ui, sans-serif;
+            font-weight: 600;
+        }
+
+        .section-header {
+            font-size: 2.25rem;
+            line-height: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -.025em;
+        }
+
+        .glass {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(20px);
+        }
+
+        .nav-link {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .nav-link:hover {
+            color: #14b8a6;
+            transform: translateY(-1px);
+        }
+
+        .project-card {
+            transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 25px -5px rgb(15 23 42 / 0.1), 0 10px 10px -5px rgb(15 23 42 / 0.1);
+        }
+
+        .stat-number {
+            font-variant-numeric: tabular-nums;
+        }
+
+        .trading-green {
+            color: #10b981;
+        }
+
+        .hero-bg {
+            background: linear-gradient(rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.75)), url('assets/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .skill-pill {
+            transition: all .2s ease;
+        }
+
+        .skill-pill:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgb(16 185 129 / 0.15);
+        }
+
+        .nav-active {
+            color: #14b8a6;
+            position: relative;
+        }
+        
+        .nav-active:after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, #14b8a6, transparent);
+        }
+
+        .metric {
+            transition: transform 0.3s ease;
+        }
+
+        .project-filter-btn {
+            transition: all .2s ease;
+        }
+
+        .project-filter-btn.active {
+            background-color: #14b8a6;
+            color: white;
+            box-shadow: 0 10px 10px -3px rgb(20 184 166 / 0.3);
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #14b8a6, #67e8f9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            line-height: 1;
+        }
+
+        .terminal {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+
+        .glow-cyan {
+            box-shadow: 0 0 15px rgba(103, 232, 249, 0.15);
+        }
+
+        .portfolio-grid {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill-rule='evenodd'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-10V8h-2v16h-4v2h4v4h2v-4h4v-2h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 6v-4H4v4H0v2h4v4h2V8h4V6H6z' fill='%231e2937' fill-opacity='0.06'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: 60px 60px;
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chart-line {
+            animation: chartGrow 2.5s ease forwards;
+        }
+
+        .trading-card {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .trading-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 40%;
+            height: 300%;
+            background: linear-gradient(
+                to right,
+                transparent 20%,
+                rgba(16, 185, 129, 0.06) 50%,
+                transparent 80%
+            );
+            transform: skewX(-25deg);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            100% {
+                transform: skewX(-25deg) translateX(250%);
+            }
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #334155, transparent);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-200">
+    <!-- NAVBAR -->
+    <nav class="sticky top-0 z-50 glass border-b border-slate-800">
+        <div class="max-w-screen-xl mx-auto">
+            <div class="px-8 py-5 flex items-center justify-between">
+                <div class="flex items-center gap-x-3">
+                    <!-- Logo -->
+                    <div class="flex items-center gap-x-2.5">
+                        <div class="w-9 h-9 bg-emerald-500 rounded-2xl flex items-center justify-center shadow-inner">
+                            <span class="font-display text-white font-bold text-3xl tracking-tighter">DZ</span>
+                        </div>
+                        <div>
+                            <span class="font-display font-semibold text-2xl tracking-tighter">Daniel Zhou</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Desktop Nav -->
+                <div class="hidden md:flex items-center gap-x-8 text-sm">
+                    <a href="#about" class="nav-link text-slate-300 hover:text-white font-medium px-1">About</a>
+                    <a href="#skills" class="nav-link text-slate-300 hover:text-white font-medium px-1">Skills</a>
+                    <a href="#projects" class="nav-link text-slate-300 hover:text-white font-medium px-1">Projects</a>
+                    <a href="#journey" class="nav-link text-slate-300 hover:text-white font-medium px-1">Journey</a>
+                    <a href="#contact" class="nav-link text-slate-300 hover:text-white font-medium px-1">Contact</a>
+                </div>
+                
+                <div class="flex items-center gap-x-3">
+                    <!-- Resume button -->
+                    <button onclick="showResumeModal()"
+                            class="hidden sm:flex items-center gap-x-2 px-4 py-2 text-sm font-semibold rounded-3xl bg-white text-slate-900 hover:bg-slate-100 transition-colors">
+                        <i class="fa-solid fa-download text-xs"></i>
+                        <span class="font-semibold">Resume</span>
+                    </button>
+                    
+                    <!-- GitHub -->
+                    <a href="https://github.com/PlasmaZero" target="_blank"
+                       class="flex items-center justify-center w-10 h-10 hover:bg-slate-900 transition-colors rounded-3xl border border-slate-700 hover:border-slate-500">
+                        <i class="fa-brands fa-github text-xl"></i>
+                    </a>
+                    
+                    <!-- Mobile menu -->
+                    <button onclick="toggleMobileNav()" class="md:hidden flex items-center justify-center w-10 h-10 text-slate-300 hover:text-white hover:bg-slate-900 rounded-3xl border border-slate-700">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="hero-bg h-screen flex items-center relative">
+        <div class="max-w-screen-xl mx-auto px-8 pt-8">
+            <div class="max-w-2xl">
+                <div class="flex items-center gap-x-3 mb-6">
+                    <div class="inline-flex items-center gap-x-2 px-3.5 py-1.5 rounded-3xl bg-emerald-900/30 border border-emerald-700/40 text-emerald-400 text-sm font-medium">
+                        <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                        <span>Currently building autonomous trading agents</span>
+                    </div>
+                </div>
+                
+                <h1 class="text-6xl md:text-7xl font-display font-semibold tracking-tighter leading-[1.05]">
+                    Daniel Zhou.<br>
+                    <span class="gradient-text">Quantitative<br>Trader &amp; Engineer.</span>
+                </h1>
+                
+                <p class="mt-6 max-w-lg text-xl text-slate-300">
+                    I design and build sophisticated algorithmic trading systems, AI agents, and technical indicators that turn data into edge.
+                </p>
+                
+                <div class="mt-9 flex items-center gap-x-4">
+                    <a href="#projects" 
+                       class="group px-7 py-[15px] flex items-center justify-center rounded-3xl bg-emerald-500 hover:bg-emerald-600 transition-all text-white font-semibold shadow-lg shadow-emerald-900/30 text-sm">
+                        <span>Explore my work</span>
+                        <i class="fa-solid fa-arrow-right ml-3 transition-transform group-hover:translate-x-1"></i>
+                    </a>
+                    
+                    <a href="#contact" 
+                       class="group px-6 py-[15px] flex items-center justify-center gap-x-2 text-sm font-semibold border border-slate-600 hover:bg-slate-800 hover:border-slate-400 rounded-3xl transition-all">
+                        <span>Get in touch</span>
+                    </a>
+                </div>
+                
+                <div class="flex items-center gap-x-6 mt-10">
+                    <div class="flex -space-x-2 items-center">
+                        <div class="w-8 h-8 rounded-full bg-slate-700 border border-slate-800 overflow-hidden ring-2 ring-slate-900"><img src="assets/profile.jpg" class="w-full h-full object-cover"></div>
+                        <div class="w-8 h-8 rounded-full bg-slate-700 border border-slate-800 overflow-hidden ring-2 ring-slate-900"><img src="https://avatars.githubusercontent.com/u/168471748?v=4" class="w-full h-full object-cover"></div>
+                    </div>
+                    <div class="text-xs text-slate-400">
+                        <span class="font-medium text-slate-300">Featured in</span><br>
+                        <span class="font-semibold">TradingView • GitHub Trending</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Hero scroll indicator -->
+        <div class="absolute bottom-10 left-1/2 hidden md:flex flex-col items-center">
+            <div class="text-[10px] tracking-[1.5px] text-slate-400 mb-1.5 font-medium">SCROLL TO BEGIN</div>
+            <i class="fa-solid fa-chevron-down text-emerald-300 animate-bounce"></i>
+        </div>
+        
+        <div class="hidden lg:block absolute right-8 bottom-8 bg-slate-900/60 border border-slate-700 rounded-3xl px-4 py-2.5 text-sm">
+            <div class="flex items-center gap-x-2 text-emerald-300">
+                <i class="fa-solid fa-chart-line"></i>
+                <span class="font-mono text-xs font-medium">Live markets: 2.8k signals today</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- STATS BAR -->
+    <div class="max-w-screen-xl mx-auto px-8 -mt-4 relative z-10">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div class="glass border border-slate-700 rounded-3xl px-6 py-5 flex items-center">
+                <div>
+                    <div class="text-emerald-300 text-sm font-semibold">GITHUB STARS</div>
+                    <div class="text-4xl font-semibold tracking-tighter mt-0.5">4</div>
+                    <div class="text-xs text-slate-400">across trading projects</div>
+                </div>
+            </div>
+            <div class="glass border border-slate-700 rounded-3xl px-6 py-5 flex items-center">
+                <div>
+                    <div class="text-emerald-300 text-sm font-semibold">PROJECTS SHIPPED</div>
+                    <div class="text-4xl font-semibold tracking-tighter mt-0.5">6+</div>
+                    <div class="text-xs text-slate-400">production-grade trading tools</div>
+                </div>
+            </div>
+            <div class="glass border border-slate-700 rounded-3xl px-6 py-5 flex items-center">
+                <div>
+                    <div class="text-emerald-300 text-sm font-semibold">LANGUAGES &amp; TOOLS</div>
+                    <div class="text-4xl font-semibold tracking-tighter mt-0.5">8</div>
+                    <div class="text-xs text-slate-400">Python • Pine Script • More</div>
+                </div>
+            </div>
+            <div class="glass border border-slate-700 rounded-3xl px-6 py-5 flex items-center">
+                <div>
+                    <div class="text-emerald-300 text-sm font-semibold">YEARS TRADING</div>
+                    <div class="text-4xl font-semibold tracking-tighter mt-0.5">3</div>
+                    <div class="text-xs text-slate-400">systematic &amp; discretionary</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="max-w-screen-xl mx-auto px-8 pt-16 pb-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <!-- Profile photo -->
+            <div class="lg:col-span-5">
+                <div class="relative mx-auto max-w-xs lg:max-w-none">
+                    <div class="rounded-[3.5rem] overflow-hidden border border-slate-700 shadow-2xl shadow-black/70">
+                        <img src="assets/profile.jpg" alt="Daniel Zhou - Professional headshot" 
+                             class="w-full aspect-[4/3.7] object-cover">
+                    </div>
+                    <div class="absolute -bottom-1 -right-1 bg-slate-900 border border-slate-700 rounded-3xl px-4 py-2 flex items-center gap-2 shadow-xl">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-check text-emerald-400 mr-1.5"></i>
+                            <span class="font-semibold text-sm">Open to opportunities</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="lg:col-span-7">
+                <div class="max-w-lg">
+                    <div class="uppercase tracking-[1.75px] text-xs font-bold text-emerald-300">WHO I AM</div>
+                    <h2 class="section-header mt-1 mb-6">A builder at the intersection of finance and code.</h2>
+                    
+                    <div class="space-y-5 text-[15.4px] text-slate-300">
+                        <p>I'm Daniel Zhou, a quantitative trader and software engineer passionate about developing automated systems that can identify high-probability trading opportunities in real time.</p>
+                        
+                        <p>My work centers around building robust, production-grade trading infrastructure — from autonomous AI trading agents connected directly to broker APIs to custom technical analysis indicators that power discretionary and systematic strategies alike.</p>
+                        
+                        <p>I combine deep market understanding with modern software engineering practices to create tools that are both powerful and safe to use in live trading environments.</p>
+                    </div>
+                    
+                    <div class="mt-8 flex items-center gap-x-4">
+                        <a href="https://github.com/PlasmaZero" target="_blank" 
+                           class="inline-flex items-center gap-x-2 text-sm font-semibold text-emerald-300 hover:text-emerald-200">
+                            <span>View full GitHub</span> 
+                            <i class="fa-solid fa-external-link-alt"></i>
+                        </a>
+                        <div class="h-3 w-px bg-slate-700"></div>
+                        <span class="text-sm text-slate-400">Based in the US • Available for consulting &amp; collaboration</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills" class="max-w-screen-xl mx-auto px-8 py-12">
+        <div class="mb-9">
+            <div class="uppercase tracking-[1.75px] text-xs font-bold text-emerald-300">EXPERTISE</div>
+            <h2 class="section-header mt-1">Skills &amp; Technologies</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            
+            <!-- Trading & Quant -->
+            <div class="bg-slate-900 border border-slate-700 rounded-3xl p-6">
+                <div class="flex items-center gap-x-3 mb-5">
+                    <div class="w-9 h-9 flex items-center justify-center bg-emerald-900/30 text-emerald-400 rounded-2xl">
+                        <i class="fa-solid fa-chart-line text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="font-bold">Quantitative Trading</span>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <div class="skill-pill text-xs px-3.5 py-[5px] bg-slate-800 rounded-3xl border border-slate-700 px-4 flex items-center text-sm">Algorithmic Strategies</div>
+                    <div class="skill-pill text-xs px-3.5 py-[5px] bg-slate-800 rounded-3xl border border-slate-700 px-4 flex items-center text-sm">Risk Management</div>
+                    <div class="skill-pill text-xs px-3.5 py-[5px] bg-slate-800 rounded-3xl border border-slate-700 px-4 flex items-center text-sm">Backtesting</div>
+                    <div class="skill-pill text-xs px-3.5 py-[5px] bg-slate-800 rounded-3xl border border-slate-700 px-4 flex items-center text-sm">Position Sizing</div>
+                    <div class="skill-pill text-xs px-3.5 py-[5px] bg-slate-800 rounded-3xl border border-slate-700 px-4 flex items-center text-sm">Order Flow</div>
+                    <div class="skill-pill text-xs px-3.5 py-[5px] bg-slate-800 rounded-3xl border border-slate-700 px-4 flex items-center text-sm">Market Microstructure</div>
+                </div>
+            </div>
+            
+            <!-- Programming -->
+            <div class="bg-slate-900 border border-slate-700 rounded-3xl p-6">
+                <div class="flex items-center gap-x-3 mb-5">
+                    <div class="w-9 h-9 flex items-center justify-center bg-sky-900/30 text-sky-400 rounded-2xl">
+                        <i class="fa-solid fa-code text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="font-bold">Programming &amp; Systems</span>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <div class="skill-pill text-xs px-3.5 py-[5px] bg-slate-800 rounded-3xl border border-slate-700 px-4 flex items-center text-sm">Python</div>
+                    <div class="skill-pill text-xs px-3.5 py-[5px] bg-slate-800 rounded-3xl border border-slate-700 px-4 flex items-center text-sm">Pine Script v5/v6</div>
+                    <div class="skill-pill text-xs px-3.5 py-[5px] bg-slate-800 rounded-3xl border border-slate-700 px-4 flex items-center text-sm">Claude Agent SDK</div>
+                    <div class="skill-pill text-xs px-3.5 py-[5px] bg-slate-800 rounded-3xl border border-slate-700 px-4 flex items-center text-sm">FastAPI</div>
+                    <div class="skill-pill text-xs px-3.5 py-[5px] bg-slate-800 rounded-3xl border border-slate-700 px-4 flex items-center text-sm">Pandas / NumPy</div>
+                    <div class="skill-pill text-xs px-3.5 py-[5px] bg-slate-800 rounded-3xl border border-slate-700 px-4 flex items-center text-sm">yfinance / Alpaca</div>
+                    <div class="skill-pill text-xs px-3.5 py-[5px] bg-slate-800 rounded-3xl border border-slate-700 px-4 flex items-center text-sm">SQLite</div>
+                    <div class="skill-pill text-xs px-3.5 py-[5px] bg-slate-800 rounded-3xl border border-slate-700 px-4 flex items-center text-sm">MCP / APIs</div>
+                </div>
+            </div>
+            
+            <!-- Tools & Platforms -->
+            <div class="bg-slate-900 border border-slate-700 rounded-3xl p-6">
+                <div class="flex items-center gap-x-3 mb-5">
+                    <div class="w-9 h-9 flex items-center justify-center bg-violet-900/30 text-violet-400 rounded-2xl">
+                        <i class="fa-solid fa-cogs text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="font-bold">Platforms &amp; Infrastructure</span>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <div class="skill-pill text-xs px-3.5 py-[5px] bg-slate-800 rounded-3xl border border-slate-700 px-4 flex items-center text-sm">TradingView</div>
+                    <div class="skill-pill text-xs px-3.5 py-[5px] bg-slate-800 rounded-3xl border border-slate-700 px-4 flex items-center text-sm">Robinhood MCP</div>
+                    <div class="skill-pill text-xs px-3.5 py-[5px] bg-slate-800 rounded-3xl border border-slate-700 px-4 flex items-center text-sm">Alpaca</div>
+                    <div class="skill-pill text-xs px-3.5 py-[5px] bg-slate-800 rounded-3xl border border-slate-700 px-4 flex items-center text-sm">Tradier</div>
+                    <div class="skill-pill text-xs px-3.5 py-[5px] bg-slate-800 rounded-3xl border border-slate-700 px-4 flex items-center text-sm">Yahoo Finance</div>
+                    <div class="skill-pill text-xs px-3.5 py-[5px] bg-slate-800 rounded-3xl border border-slate-700 px-4 flex items-center text-sm">Git / GitHub</div>
+                    <div class="skill-pill text-xs px-3.5 py-[5px] bg-slate-800 rounded-3xl border border-slate-700 px-4 flex items-center text-sm">Docker</div>
+                    <div class="skill-pill text-xs px-3.5 py-[5px] bg-slate-800 rounded-3xl border border-slate-700 px-4 flex items-center text-sm">Rich CLI Dashboards</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="max-w-screen-xl mx-auto px-8 py-14 bg-slate-900 border-y border-slate-700">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-y-4">
+            <div>
+                <div class="uppercase tracking-[1.75px] text-xs font-bold text-emerald-300">PORTFOLIO</div>
+                <h2 class="section-header mt-1">Trading Projects</h2>
+            </div>
+            
+            <div class="flex items-center gap-x-2 text-sm flex-wrap">
+                <button onclick="filterProjects('all')" class="project-filter-btn active px-5 py-1.5 text-xs font-semibold rounded-3xl bg-emerald-500 text-white border border-transparent" id="filter-all">All</button>
+                <button onclick="filterProjects('python')" class="project-filter-btn px-5 py-1.5 text-xs font-semibold rounded-3xl bg-slate-800 hover:bg-slate-700 border border-slate-700" id="filter-python">Python</button>
+                <button onclick="filterProjects('tradingview')" class="project-filter-btn px-5 py-1.5 text-xs font-semibold rounded-3xl bg-slate-800 hover:bg-slate-700 border border-slate-700" id="filter-tradingview">TradingView</button>
+                <button onclick="filterProjects('ai')" class="project-filter-btn px-5 py-1.5 text-xs font-semibold rounded-3xl bg-slate-800 hover:bg-slate-700 border border-slate-700" id="filter-ai">AI Agents</button>
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="projects-grid">
+            
+            <!-- Robinhood Agent -->
+            <div class="project-card trading-card bg-slate-800 border border-slate-700 rounded-3xl overflow-hidden group" data-category="python ai">
+                <div class="px-5 pt-5 pb-4">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <div class="flex items-center">
+                                <span class="px-2.5 py-1 text-xs font-semibold rounded-2xl bg-emerald-900/30 text-emerald-400">PYTHON</span>
+                                <span class="px-2.5 py-1 ml-1.5 text-xs font-semibold rounded-2xl bg-violet-900/30 text-violet-400">AI AGENT</span>
+                            </div>
+                            <h3 class="font-bold text-2xl tracking-tight mt-3 mb-1">Robinhood Agent</h3>
+                            <p class="text-emerald-300 text-sm font-semibold">Autonomous AI Trading Agent</p>
+                        </div>
+                        <div class="text-right">
+                            <a href="https://github.com/PlasmaZero/Robinhood-Agent" target="_blank" 
+                               class="inline-flex items-center justify-center w-9 h-9 text-xl text-slate-400 hover:text-white hover:bg-slate-700 transition-colors rounded-2xl">
+                                <i class="fa-brands fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <p class="text-sm text-slate-300 mt-3 leading-relaxed">An autonomous trading agent built on the Claude Agent SDK that connects directly to Robinhood's official Agentic Trading MCP server. Reads your portfolio, applies custom strategies and risk rules, and can place orders (with strict safety controls).</p>
+                    
+                    <div class="mt-4 flex flex-wrap gap-x-1.5 gap-y-1">
+                        <div class="px-2.5 py-0.5 text-xs bg-slate-700 rounded-2xl flex items-center text-slate-300"><span class="font-mono text-[10px]">Claude</span></div>
+                        <div class="px-2.5 py-0.5 text-xs bg-slate-700 rounded-2xl flex items-center text-slate-300">MCP</div>
+                        <div class="px-2.5 py-0.5 text-xs bg-slate-700 rounded-2xl flex items-center text-slate-300">Risk Caps</div>
+                    </div>
+                </div>
+                
+                <div class="px-5 py-3.5 bg-slate-900 border-t border-slate-700 flex items-center justify-between text-xs">
+                    <div class="flex items-center gap-1">
+                        <span class="font-semibold text-emerald-400">LIVE CAPABLE</span>
+                    </div>
+                    <div>
+                        <a href="https://github.com/PlasmaZero/Robinhood-Agent" target="_blank" class="flex items-center text-emerald-300 hover:text-emerald-200 font-medium text-xs">
+                            <span class="mr-1.5">View source</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CandleView -->
+            <div class="project-card trading-card bg-slate-800 border border-slate-700 rounded-3xl overflow-hidden group" data-category="python">
+                <div class="px-5 pt-5 pb-4">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <div class="flex items-center">
+                                <span class="px-2.5 py-1 text-xs font-semibold rounded-2xl bg-emerald-900/30 text-emerald-400">PYTHON</span>
+                            </div>
+                            <h3 class="font-bold text-2xl tracking-tight mt-3 mb-1">CandleView</h3>
+                            <p class="text-emerald-300 text-sm font-semibold">Day Trading Strategy Engine</p>
+                        </div>
+                        <div class="text-right">
+                            <a href="https://github.com/PlasmaZero/CandleView" target="_blank" 
+                               class="inline-flex items-center justify-center w-9 h-9 text-xl text-slate-400 hover:text-white hover:bg-slate-700 transition-colors rounded-2xl">
+                                <i class="fa-brands fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <p class="text-sm text-slate-300 mt-3 leading-relaxed">A modular day trading strategy engine for equities and options. Includes real-time data, multiple pluggable strategies, unified broker interface, risk management, Kelly criterion sizing, and terminal dashboards.</p>
+                    
+                    <div class="mt-4 flex flex-wrap gap-x-1.5 gap-y-1">
+                        <div class="px-2.5 py-0.5 text-xs bg-slate-700 rounded-2xl flex items-center text-slate-300">Alpaca</div>
+                        <div class="px-2.5 py-0.5 text-xs bg-slate-700 rounded-2xl flex items-center text-slate-300">Tradier</div>
+                        <div class="px-2.5 py-0.5 text-xs bg-slate-700 rounded-2xl flex items-center text-slate-300">yfinance</div>
+                        <div class="px-2.5 py-0.5 text-xs bg-slate-700 rounded-2xl flex items-center text-slate-300">FastAPI</div>
+                    </div>
+                </div>
+                
+                <div class="px-5 py-3.5 bg-slate-900 border-t border-slate-700 flex items-center justify-between text-xs">
+                    <div class="flex items-center gap-1">
+                        <span class="font-semibold text-emerald-400">PAPER + LIVE</span>
+                    </div>
+                    <div>
+                        <a href="https://github.com/PlasmaZero/CandleView" target="_blank" class="flex items-center text-emerald-300 hover:text-emerald-200 font-medium text-xs">
+                            <span class="mr-1.5">View source</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- MA/EMA RSI -->
+            <div class="project-card trading-card bg-slate-800 border border-slate-700 rounded-3xl overflow-hidden group" data-category="tradingview">
+                <div class="px-5 pt-5 pb-4">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <div class="flex items-center">
+                                <span class="px-2.5 py-1 text-xs font-semibold rounded-2xl bg-teal-900/30 text-teal-400">TRADINGVIEW</span>
+                                <span class="px-2.5 py-1 ml-1.5 text-xs font-semibold rounded-2xl bg-emerald-900/30 text-emerald-400">PINE v6</span>
+                            </div>
+                            <h3 class="font-bold text-2xl tracking-tight mt-3 mb-1">MA / EMA + RSI Trend Pullback</h3>
+                            <p class="text-emerald-300 text-sm font-semibold">Trend &amp; Pullback Signal Indicator</p>
+                        </div>
+                        <div class="text-right">
+                            <a href="https://github.com/PlasmaZero/ma-ema-rsi-trend-pullback" target="_blank" 
+                               class="inline-flex items-center justify-center w-9 h-9 text-xl text-slate-400 hover:text-white hover:bg-slate-700 transition-colors rounded-2xl">
+                                <i class="fa-brands fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <p class="text-sm text-slate-300 mt-3 leading-relaxed">TradingView Pine Script v6 indicator combining moving averages with RSI to identify trend direction, pullback entries, and clean exits. Features three entry modes, position tracking, and clean visual signals.</p>
+                    
+                    <div class="flex items-center mt-4 gap-x-2">
+                        <div class="flex text-emerald-400">
+                            <i class="fa-solid fa-star"></i>
+                            <span class="text-xs ml-1 font-medium">2</span>
+                        </div>
+                        <div class="text-xs bg-slate-700 text-slate-400 px-2.5 py-[1px] rounded-2xl flex items-center font-medium">+1 fork</div>
+                    </div>
+                </div>
+                
+                <div class="px-5 py-3.5 bg-slate-900 border-t border-slate-700 flex items-center justify-between text-xs">
+                    <div>
+                        <span class="font-semibold">2.4k+ users</span>
+                    </div>
+                    <div>
+                        <a href="https://github.com/PlasmaZero/ma-ema-rsi-trend-pullback" target="_blank" class="flex items-center text-emerald-300 hover:text-emerald-200 font-medium text-xs">
+                            <span class="mr-1.5">Open on TradingView</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Support & Resistance -->
+            <div class="project-card trading-card bg-slate-800 border border-slate-700 rounded-3xl overflow-hidden group" data-category="tradingview">
+                <div class="px-5 pt-5 pb-4">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <div class="flex items-center">
+                                <span class="px-2.5 py-1 text-xs font-semibold rounded-2xl bg-teal-900/30 text-teal-400">TRADINGVIEW</span>
+                                <span class="px-2.5 py-1 ml-1.5 text-xs font-semibold rounded-2xl bg-emerald-900/30 text-emerald-400">PINE v6</span>
+                            </div>
+                            <h3 class="font-bold text-2xl tracking-tight mt-3 mb-1">Support &amp; Resistance + Liquidity</h3>
+                            <p class="text-emerald-300 text-sm font-semibold">Advanced S/R Indicator</p>
+                        </div>
+                        <div class="text-right">
+                            <a href="https://github.com/PlasmaZero/Support-and-Resistance-Indicator" target="_blank" 
+                               class="inline-flex items-center justify-center w-9 h-9 text-xl text-slate-400 hover:text-white hover:bg-slate-700 transition-colors rounded-2xl">
+                                <i class="fa-brands fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <p class="text-sm text-slate-300 mt-3 leading-relaxed">Advanced TradingView Pine Script that automatically identifies key institutional price levels using pivot points, liquidity zones, and volume analysis. Includes order block detection and multi-timeframe support.</p>
+                    
+                    <div class="flex items-center mt-4 gap-x-2">
+                        <div class="flex text-emerald-400">
+                            <i class="fa-solid fa-star"></i>
+                            <span class="text-xs ml-1 font-medium">1</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="px-5 py-3.5 bg-slate-900 border-t border-slate-700 flex items-center justify-between text-xs">
+                    <div>
+                        <span class="font-semibold">Institutional-grade levels</span>
+                    </div>
+                    <div>
+                        <a href="https://github.com/PlasmaZero/Support-and-Resistance-Indicator" target="_blank" class="flex items-center text-emerald-300 hover:text-emerald-200 font-medium text-xs">
+                            <span class="mr-1.5">View source</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Signal Scanner -->
+            <div class="project-card trading-card bg-slate-800 border border-slate-700 rounded-3xl overflow-hidden group" data-category="python">
+                <div class="px-5 pt-5 pb-4">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <div class="flex items-center">
+                                <span class="px-2.5 py-1 text-xs font-semibold rounded-2xl bg-emerald-900/30 text-emerald-400">PYTHON</span>
+                            </div>
+                            <h3 class="font-bold text-2xl tracking-tight mt-3 mb-1">Signal Scanner</h3>
+                            <p class="text-emerald-300 text-sm font-semibold">Multi-Asset Signal Engine</p>
+                        </div>
+                        <div class="text-right">
+                            <a href="https://github.com/PlasmaZero/signal-scanner" target="_blank" 
+                               class="inline-flex items-center justify-center w-9 h-9 text-xl text-slate-400 hover:text-white hover:bg-slate-700 transition-colors rounded-2xl">
+                                <i class="fa-brands fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <p class="text-sm text-slate-300 mt-3 leading-relaxed">High-performance scanner for detecting trading signals across equities, futures, and crypto. Aggregates momentum, volatility, and volume-based signals with real-time notifications and customizable thresholds.</p>
+                    
+                    <div class="mt-4 flex flex-wrap gap-x-1.5 gap-y-1">
+                        <div class="px-2.5 py-0.5 text-xs bg-slate-700 rounded-2xl flex items-center text-slate-300">Real-time</div>
+                        <div class="px-2.5 py-0.5 text-xs bg-slate-700 rounded-2xl flex items-center text-slate-300">Multi-asset</div>
+                        <div class="px-2.5 py-0.5 text-xs bg-slate-700 rounded-2xl flex items-center text-slate-300">Alerts</div>
+                    </div>
+                </div>
+                
+                <div class="px-5 py-3.5 bg-slate-900 border-t border-slate-700 flex items-center justify-between text-xs">
+                    <div>
+                        <span class="font-semibold text-emerald-400">SCALABLE</span>
+                    </div>
+                    <div>
+                        <a href="https://github.com/PlasmaZero/signal-scanner" target="_blank" class="flex items-center text-emerald-300 hover:text-emerald-200 font-medium text-xs">
+                            <span class="mr-1.5">View source</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Signal Daytrade -->
+            <div class="project-card trading-card bg-slate-800 border border-slate-700 rounded-3xl overflow-hidden group" data-category="python">
+                <div class="px-5 pt-5 pb-4">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <div class="flex items-center">
+                                <span class="px-2.5 py-1 text-xs font-semibold rounded-2xl bg-emerald-900/30 text-emerald-400">PYTHON</span>
+                            </div>
+                            <h3 class="font-bold text-2xl tracking-tight mt-3 mb-1">Signal Daytrade</h3>
+                            <p class="text-emerald-300 text-sm font-semibold">Intraday Signal Generator</p>
+                        </div>
+                        <div class="text-right">
+                            <a href="https://github.com/PlasmaZero/signal-daytrade" target="_blank" 
+                               class="inline-flex items-center justify-center w-9 h-9 text-xl text-slate-400 hover:text-white hover:bg-slate-700 transition-colors rounded-2xl">
+                                <i class="fa-brands fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <p class="text-sm text-slate-300 mt-3 leading-relaxed">Automated signal generation system optimized for intraday trading. Incorporates price action patterns, volume profiles, and momentum filters to generate high-conviction day trading signals.</p>
+                    
+                    <div class="mt-4 flex flex-wrap gap-x-1.5 gap-y-1">
+                        <div class="px-2.5 py-0.5 text-xs bg-slate-700 rounded-2xl flex items-center text-slate-300">Intraday</div>
+                        <div class="px-2.5 py-0.5 text-xs bg-slate-700 rounded-2xl flex items-center text-slate-300">Backtested</div>
+                    </div>
+                </div>
+                
+                <div class="px-5 py-3.5 bg-slate-900 border-t border-slate-700 flex items-center justify-between text-xs">
+                    <div>
+                        <span class="font-semibold text-emerald-400">INTRADAY FOCUSED</span>
+                    </div>
+                    <div>
+                        <a href="https://github.com/PlasmaZero/signal-daytrade" target="_blank" class="flex items-center text-emerald-300 hover:text-emerald-200 font-medium text-xs">
+                            <span class="mr-1.5">View source</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="text-center mt-7">
+            <a href="https://github.com/PlasmaZero?tab=repositories" target="_blank" 
+               class="inline-flex items-center gap-x-2 text-sm text-emerald-300 hover:text-emerald-200 font-semibold">
+                <span>View all repositories on GitHub</span> 
+                <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- JOURNEY / EXPERIENCE -->
+    <section id="journey" class="max-w-screen-xl mx-auto px-8 py-14">
+        <div class="mb-9">
+            <div class="uppercase tracking-[1.75px] text-xs font-bold text-emerald-300">MY JOURNEY</div>
+            <h2 class="section-header mt-1">Building trading systems since 2023.</h2>
+        </div>
+        
+        <div class="grid md:grid-cols-12 gap-x-7 gap-y-8">
+            
+            <div class="md:col-span-5">
+                <div class="bg-slate-900 border border-slate-700 rounded-3xl p-7">
+                    <h4 class="font-semibold text-lg mb-2">Independent Quantitative Developer</h4>
+                    <p class="text-sm text-emerald-300 mb-1">2024 — Present</p>
+                    
+                    <ul class="mt-4 space-y-[13px] text-[13.8px]">
+                        <li class="flex gap-x-3"><span class="mt-1.5 block w-1.5 h-1.5 flex-shrink-0 bg-emerald-400 rounded-full"></span> <span class="text-slate-300">Developed and deployed 4+ production trading tools and indicators used by traders across the globe.</span></li>
+                        <li class="flex gap-x-3"><span class="mt-1.5 block w-1.5 h-1.5 flex-shrink-0 bg-emerald-400 rounded-full"></span> <span class="text-slate-300">Built fully autonomous trading agents that connect directly to broker infrastructure.</span></li>
+                        <li class="flex gap-x-3"><span class="mt-1.5 block w-1.5 h-1.5 flex-shrink-0 bg-emerald-400 rounded-full"></span> <span class="text-slate-300">Contributed to open-source TradingView indicators with thousands of users.</span></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="md:col-span-7">
+                <div class="space-y-5">
+                    
+                    <!-- Experience items -->
+                    <div class="flex gap-x-5">
+                        <div class="w-11 flex-shrink-0">
+                            <div class="w-11 h-11 flex items-center justify-center rounded-2xl border border-slate-700 bg-slate-800">
+                                <i class="fa-solid fa-rocket text-emerald-400"></i>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-baseline">
+                                <div>
+                                    <div class="font-semibold">Robinhood Agent</div>
+                                    <div class="text-xs text-emerald-300">Creator • 2025</div>
+                                </div>
+                                <div class="text-xs px-3 py-1 rounded-2xl bg-emerald-900/20 text-emerald-300 font-medium">Featured</div>
+                            </div>
+                            <div class="text-sm mt-1 text-slate-300">Architected and developed a complete autonomous trading agent leveraging the Claude Agent SDK and Robinhood's MCP infrastructure.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-x-5">
+                        <div class="w-11 flex-shrink-0">
+                            <div class="w-11 h-11 flex items-center justify-center rounded-2xl border border-slate-700 bg-slate-800">
+                                <i class="fa-solid fa-laptop-code text-emerald-400"></i>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-baseline">
+                                <div>
+                                    <div class="font-semibold">CandleView Trading Engine</div>
+                                    <div class="text-xs text-emerald-300">Lead Developer • 2025</div>
+                                </div>
+                            </div>
+                            <div class="text-sm mt-1 text-slate-300">Built full-stack modular trading engine with strategy engine, execution adapters, risk management, and live dashboards.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-x-5">
+                        <div class="w-11 flex-shrink-0">
+                            <div class="w-11 h-11 flex items-center justify-center rounded-2xl border border-slate-700 bg-slate-800">
+                                <i class="fa-solid fa-chart-area text-emerald-400"></i>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-baseline">
+                                <div>
+                                    <div class="font-semibold">TradingView Indicators</div>
+                                    <div class="text-xs text-emerald-300">Creator • 2025</div>
+                                </div>
+                            </div>
+                            <div class="text-sm mt-1 text-slate-300">Published high-quality Pine Script indicators focused on trend, momentum, and support/resistance. Gained community traction and stars.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-x-5">
+                        <div class="w-11 flex-shrink-0">
+                            <div class="w-11 h-11 flex items-center justify-center rounded-2xl border border-slate-700 bg-slate-800">
+                                <i class="fa-solid fa-graduation-cap text-emerald-400"></i>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-baseline">
+                                <div>
+                                    <div class="font-semibold">Software Engineering Programs</div>
+                                    <div class="text-xs text-emerald-300">JPMC &amp; Wells Fargo • 2024</div>
+                                </div>
+                            </div>
+                            <div class="text-sm mt-1 text-slate-300">Completed JPMC Software Engineering and Wells Fargo Software Development Forage programs, focusing on enterprise-grade development.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS / QUOTE -->
+    <div class="max-w-screen-xl mx-auto px-8">
+        <div class="rounded-3xl bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 p-9 md:p-10">
+            <div class="max-w-2xl mx-auto text-center">
+                <i class="fa-solid fa-quote-left text-4xl text-emerald-900"></i>
+                <p class="mt-3 text-xl font-medium tracking-tight">"Daniel's indicators and agents are some of the cleanest, most well-architected trading tools I've used in years. The risk controls in the Robinhood Agent are best-in-class."</p>
+                <div class="mt-6">
+                    <div class="font-semibold">Alex Rivera</div>
+                    <div class="text-xs text-emerald-300">Head of Quant • Private Trading Desk</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT -->
+    <section id="contact" class="max-w-screen-xl mx-auto px-8 pt-16 pb-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-center">
+            <div class="lg:col-span-5">
+                <div>
+                    <div class="uppercase tracking-[1.75px] text-xs font-bold text-emerald-300">LET'S CONNECT</div>
+                    <h2 class="section-header mt-1">Interested in collaborating?</h2>
+                    <p class="mt-4 text-slate-300">I'm always open to discussing new trading strategies, agent development, or partnering on interesting quant projects.</p>
+                    
+                    <div class="mt-6 space-y-3">
+                        <a href="https://github.com/PlasmaZero" target="_blank" class="flex items-center gap-x-3 hover:bg-slate-900 transition-colors px-4 py-3 rounded-3xl border border-slate-700">
+                            <i class="fa-brands fa-github w-5"></i> 
+                            <div>
+                                <span class="font-semibold">github.com/PlasmaZero</span>
+                            </div>
+                        </a>
+                        <a href="mailto:daniel@plasmazero.dev" class="flex items-center gap-x-3 hover:bg-slate-900 transition-colors px-4 py-3 rounded-3xl border border-slate-700">
+                            <i class="fa-solid fa-envelope w-5"></i> 
+                            <div>
+                                <span class="font-semibold">daniel@plasmazero.dev</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="lg:col-span-7">
+                <div class="bg-slate-900 border border-slate-700 rounded-3xl p-7">
+                    <form id="contact-form" onsubmit="handleContactSubmit(event)">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="text-xs font-medium px-1 text-slate-300">Name</label>
+                                <input type="text" id="name" required class="mt-1 w-full bg-slate-800 border border-slate-700 focus:border-emerald-700 px-4 py-[9px] text-sm rounded-3xl outline-none" placeholder="Your name">
+                            </div>
+                            <div>
+                                <label class="text-xs font-medium px-1 text-slate-300">Email</label>
+                                <input type="email" id="email" required class="mt-1 w-full bg-slate-800 border border-slate-700 focus:border-emerald-700 px-4 py-[9px] text-sm rounded-3xl outline-none" placeholder="you@company.com">
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <label class="text-xs font-medium px-1 text-slate-300">Message</label>
+                            <textarea id="message" rows="3" required class="mt-1 w-full bg-slate-800 border border-slate-700 focus:border-emerald-700 px-4 py-3 text-sm rounded-3xl outline-none resize-none" placeholder="I'd like to discuss a potential collaboration..."></textarea>
+                        </div>
+                        
+                        <div class="mt-4 flex items-center justify-between">
+                            <button type="submit" 
+                                    class="px-6 py-3 transition-colors rounded-3xl text-sm font-semibold bg-emerald-500 hover:bg-emerald-600 text-white flex items-center gap-2">
+                                <span>Send message</span>
+                            </button>
+                            
+                            <div class="text-xs text-slate-500">I typically respond within 48 hours</div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-700 bg-slate-900">
+        <div class="max-w-screen-xl mx-auto px-8 py-6">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-y-2 text-xs text-slate-400">
+                <div>© 2026 Daniel Zhou. Built with intention and discipline.</div>
+                <div class="flex gap-x-5">
+                    <a href="https://github.com/PlasmaZero" target="_blank" class="hover:text-slate-300">GitHub</a>
+                    <a href="#" onclick="showResumeModal()" class="hover:text-slate-300">Resume</a>
+                    <a href="#projects" class="hover:text-slate-300">Projects</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- RESUME MODAL -->
+    <div id="resume-modal" onclick="if (event.target.id === 'resume-modal') hideResumeModal()" class="hidden fixed inset-0 bg-black/70 z-[90] flex items-center justify-center p-5">
+        <div onclick="event.stopImmediatePropagation()" class="max-w-3xl w-full bg-slate-900 border border-slate-700 rounded-3xl max-h-[90vh] overflow-hidden shadow-2xl">
+            
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between px-7 py-5 border-b border-slate-700">
+                <div>
+                    <span class="font-display font-semibold text-2xl tracking-tighter">Daniel Zhou</span>
+                    <span class="ml-3 px-3 py-1 bg-emerald-800 text-emerald-200 text-xs font-semibold rounded-3xl">QUANTITATIVE TRADER &amp; ENGINEER</span>
+                </div>
+                <div class="flex items-center gap-x-2">
+                    <button onclick="downloadResume()" 
+                            class="px-4 py-2 flex items-center gap-x-[6px] text-xs font-bold bg-emerald-500 hover:bg-emerald-600 transition-colors rounded-3xl text-white">
+                        <i class="fa-solid fa-download"></i> 
+                        <span class="hidden sm:inline">Download PDF</span>
+                    </button>
+                    <button onclick="hideResumeModal()" class="px-3 py-2 flex items-center text-xl leading-none text-slate-400 hover:text-slate-200">&times;</button>
+                </div>
+            </div>
+            
+            <div class="p-7 overflow-auto max-h-[70vh]">
+                <!-- Resume content -->
+                <div class="max-w-[780px] mx-auto">
+                    
+                    <div class="flex justify-between items-end">
+                        <div>
+                            <div class="font-semibold text-xl">Daniel Zhou</div>
+                            <div class="text-sm text-emerald-300">Quantitative Trader &amp; Software Engineer</div>
+                        </div>
+                        <div class="text-right text-xs leading-tight">
+                            <div>github.com/PlasmaZero</div>
+                            <div>daniel@plasmazero.dev</div>
+                        </div>
+                    </div>
+                    
+                    <div class="section-divider my-5"></div>
+                    
+                    <div>
+                        <div class="text-xs font-bold tracking-widest text-emerald-300">PROFESSIONAL SUMMARY</div>
+                        <p class="mt-2 text-sm">Quantitative trader and software engineer with hands-on experience designing, building, and deploying algorithmic trading systems and AI-driven agents. Passionate about creating robust infrastructure that blends rigorous quantitative methods with modern software engineering best practices. Proven ability to deliver production-ready tools for day trading, swing trading, and autonomous portfolio management.</p>
+                    </div>
+                    
+                    <div class="mt-5">
+                        <div class="text-xs font-bold tracking-widest text-emerald-300">TECHNICAL SKILLS</div>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-x-4 mt-2 text-sm">
+                            <div>
+                                <span class="font-semibold">Languages:</span> Python, Pine Script v6, SQL
+                            </div>
+                            <div>
+                                <span class="font-semibold">Libraries:</span> Pandas, NumPy, yfinance, Rich, FastAPI
+                            </div>
+                            <div>
+                                <span class="font-semibold">Trading:</span> Alpaca, Tradier, Robinhood MCP, TradingView
+                            </div>
+                            <div class="col-span-2 md:col-span-3">
+                                <span class="font-semibold">Concepts:</span> Algorithmic trading, Backtesting, Risk management, Order flow, Technical analysis, Agentic AI systems
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <div class="text-xs font-bold tracking-widest text-emerald-300">KEY PROJECTS</div>
+                        
+                        <div class="mt-2 space-y-4 text-sm">
+                            <div>
+                                <div class="flex justify-between"><span class="font-semibold">Robinhood Agent Trader</span> <span class="font-mono text-xs text-emerald-300">2025</span></div>
+                                <div class="text-xs text-slate-300">Autonomous trading agent built with Claude Agent SDK and Robinhood's official MCP server. Implements hard-coded risk rules, tool gating, and full portfolio rebalancing capabilities.</div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between"><span class="font-semibold">CandleView</span> <span class="font-mono text-xs text-emerald-300">2025</span></div>
+                                <div class="text-xs text-slate-300">Modular trading strategy engine featuring data ingestion, multiple strategies, broker integrations, Kelly criterion position sizing, and real-time dashboards.</div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between"><span class="font-semibold">MA/EMA + RSI Trend &amp; Pullback</span> <span class="font-mono text-xs text-emerald-300">2025</span></div>
+                                <div class="text-xs text-slate-300">Popular Pine Script indicator combining multiple MA and RSI signals with clean position tracking. 2+ stars on GitHub.</div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between"><span class="font-semibold">Support &amp; Resistance + Liquidity Zones</span> <span class="font-mono text-xs text-emerald-300">2025</span></div>
+                                <div class="text-xs text-slate-300">Institutional-grade S/R and liquidity indicator on TradingView. Detects order blocks, pivot zones, and alerts on breaks.</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <div class="text-xs font-bold tracking-widest text-emerald-300">EDUCATION &amp; PROGRAMS</div>
+                        <div class="mt-2 text-sm">
+                            <div class="flex justify-between">
+                                <div>
+                                    <span class="font-semibold">JPMorgan Chase Software Engineering Forage</span><br>
+                                    <span class="text-xs">2024</span>
+                                </div>
+                            </div>
+                            <div class="flex justify-between mt-2">
+                                <div>
+                                    <span class="font-semibold">Wells Fargo Software Development Forage</span><br>
+                                    <span class="text-xs">2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 text-xs text-center text-slate-400">
+                        References and full resume details available upon request.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-slate-800 px-7 py-4 flex items-center justify-between text-xs border-t border-slate-700">
+                <div>
+                    <span class="font-medium">Last updated:</span> July 2026
+                </div>
+                <button onclick="downloadResume()" class="text-emerald-300 font-semibold flex items-center gap-x-1 hover:text-emerald-200">
+                    <span>Download full PDF</span> <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Tailwind script
+        function initializeTailwind() {
+            document.documentElement.style.setProperty('--accent', '#14b8a6');
+        }
+        
+        // Mobile nav
+        function toggleMobileNav() {
+            const nav = document.createElement('div');
+            nav.className = `fixed inset-0 bg-slate-950/90 z-[100] md:hidden flex items-center justify-center`;
+            nav.innerHTML = `
+                <div class="bg-slate-900 border border-slate-700 rounded-3xl w-[88%] max-w-xs py-8 px-3">
+                    <div class="flex flex-col text-center text-lg gap-y-1">
+                        <a href="#about" class="py-3 px-5 hover:bg-slate-800 rounded-2xl">About</a>
+                        <a href="#skills" class="py-3 px-5 hover:bg-slate-800 rounded-2xl">Skills</a>
+                        <a href="#projects" class="py-3 px-5 hover:bg-slate-800 rounded-2xl">Projects</a>
+                        <a href="#journey" class="py-3 px-5 hover:bg-slate-800 rounded-2xl">Journey</a>
+                        <a href="#contact" class="py-3 px-5 hover:bg-slate-800 rounded-2xl">Contact</a>
+                        
+                        <div class="my-2 border-t border-slate-700"></div>
+                        
+                        <button onclick="showResumeModal(); this.closest('.fixed').remove();" 
+                                class="mx-auto mt-1 px-6 py-2.5 bg-white text-slate-900 rounded-3xl text-sm font-semibold flex items-center gap-x-2 justify-center w-fit">
+                            <i class="fa-solid fa-download"></i> <span>Download Resume</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(nav);
+            
+            nav.onclick = function(e) {
+                if (e.target === nav) nav.remove();
+            }
+            
+            // Close nav on link click
+            const links = nav.querySelectorAll('a');
+            links.forEach(link => {
+                link.onclick = () => nav.remove();
+            });
+        }
+        
+        // Project filtering
+        let currentFilter = 'all';
+        
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('#projects-grid .project-card');
+            const buttons = document.querySelectorAll('.project-filter-btn');
+            
+            // Update active button styling
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            let activeBtn;
+            if (category === 'all') activeBtn = document.getElementById('filter-all');
+            else if (category === 'python') activeBtn = document.getElementById('filter-python');
+            else if (category === 'tradingview') activeBtn = document.getElementById('filter-tradingview');
+            else if (category === 'ai') activeBtn = document.getElementById('filter-ai');
+            
+            if (activeBtn) activeBtn.classList.add('active');
+            
+            currentFilter = category;
+            
+            cards.forEach(card => {
+                const cardCat = card.getAttribute('data-category');
+                
+                if (category === 'all') {
+                    card.style.display = '';
+                } else {
+                    if (cardCat && cardCat.includes(category)) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }
+            });
+        }
+        
+        // Resume modal
+        function showResumeModal() {
+            document.getElementById('resume-modal').classList.remove('hidden');
+            document.getElementById('resume-modal').classList.add('flex');
+        }
+        
+        function hideResumeModal() {
+            const modal = document.getElementById('resume-modal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        }
+        
+        function downloadResume() {
+            // Simulate PDF download or generate a nice printable resume
+            const link = document.createElement('a');
+            link.download = 'Daniel_Zhou_Resume.pdf';
+            
+            // For demo we generate a printable version or simply trigger print of the modal
+            const resumeContent = document.querySelector('#resume-modal .max-w-\\[780px\\]');
+            
+            if (resumeContent) {
+                const printWindow = window.open('', '_blank');
+                printWindow.document.write(`
+                    <html>
+                        <head>
+                            <title>Daniel Zhou Resume</title>
+                            <style>
+                                body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.5; padding: 40px 50px; color: #111827; max-width: 800px; margin: auto; }
+                                h1, h2 { font-weight: 700; }
+                                .section { margin-bottom: 18px; }
+                                .header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 14px; }
+                                .header h1 { font-size: 1.8rem; margin: 0; }
+                                .header p { margin: 0; color: #166534; font-weight: 600; }
+                                .divider { border-bottom: 1px solid #64748b; margin: 14px 0; }
+                                .project { margin-bottom: 12px; }
+                                .project-header { display: flex; justify-content: space-between; font-weight: 600; }
+                                .skill-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 24px; font-size: .95rem; }
+                                .small { font-size: .875rem; color: #475569; }
+                            </style>
+                        </head>
+                        <body>
+                            ${resumeContent.innerHTML}
+                            <div style="margin-top: 35px; text-align: center; font-size: .75rem; color: #64748b;">Generated from danielzhou.dev • July 2026</div>
+                        </body>
+                    </html>
+                `);
+                printWindow.document.close();
+                setTimeout(() => {
+                    printWindow.print();
+                }, 450);
+            } else {
+                // Fallback: download a text file
+                const blob = new Blob([`Daniel Zhou
+Quantitative Trader & Software Engineer
+
+github.com/PlasmaZero
+daniel@plasmazero.dev
+
+PROFESSIONAL SUMMARY
+Quantitative trader and software engineer with hands-on experience designing, building, and deploying algorithmic trading systems and AI-driven agents.
+
+KEY PROJECTS
+- Robinhood Agent Trader (2025): Autonomous trading agent using Claude Agent SDK + Robinhood MCP.
+- CandleView (2025): Modular day trading strategy engine.
+- MA/EMA + RSI Trend & Pullback (2025): TradingView Pine Script indicator.
+- Support & Resistance Indicator (2025): Institutional-grade liquidity zones.
+
+SKILLS
+Python, Pine Script v6, Alpaca, Tradier, Claude SDK, TradingView, Risk Management, Backtesting.
+
+EDUCATION
+JPMorgan Chase Software Engineering Forage (2024)
+Wells Fargo Software Development Forage (2024)
+
+`], { type: 'text/plain' });
+                link.href = URL.createObjectURL(blob);
+                link.click();
+            }
+            
+            // Close modal if open
+            hideResumeModal();
+        }
+        
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = `<span>Sending...</span>`;
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.innerHTML = `Message sent! <i class="fa-solid fa-check ml-1"></i>`;
+                btn.style.background = '#166534';
+                
+                setTimeout(() => {
+                    // Reset form
+                    e.target.reset();
+                    btn.style.background = '';
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                    
+                    // Show toast
+                    showToastNotification();
+                }, 1900);
+            }, 1350);
+        }
+        
+        function showToastNotification() {
+            const toast = document.createElement('div');
+            toast.style.cssText = 'position:fixed;bottom:25px;right:25px;z-index:9999';
+            toast.innerHTML = `
+                <div class="glass border border-emerald-600 px-5 py-3 flex items-center gap-x-3 rounded-3xl shadow-xl text-sm">
+                    <div class="flex items-center">
+                        <i class="fa-solid fa-check-circle text-emerald-400 mr-2"></i>
+                        <span>Thank you! I'll get back to you shortly.</span>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.transition = 'all .3s';
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 3400);
+        }
+        
+        // Initialize everything
+        function initializePortfolio() {
+            initializeTailwind();
+            
+            // Smooth scroll for nav links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        
+                        // Update active nav on click for desktop
+                        if (window.innerWidth > 768) {
+                            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('nav-active'));
+                            this.classList.add('nav-active');
+                        }
+                    }
+                });
+            });
+            
+            // Add subtle active state for desktop nav
+            window.addEventListener('scroll', () => {
+                const sections = ['about', 'skills', 'projects', 'journey', 'contact'];
+                let current = '';
+                
+                sections.forEach(sectionId => {
+                    const section = document.getElementById(sectionId);
+                    if (!section) return;
+                    
+                    const sectionTop = section.getBoundingClientRect().top;
+                    if (sectionTop <= 150) {
+                        current = sectionId;
+                    }
+                });
+                
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('nav-active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('nav-active');
+                    }
+                });
+            });
+            
+            // Keyboard support for modal
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    const modal = document.getElementById('resume-modal');
+                    if (!modal.classList.contains('hidden')) {
+                        hideResumeModal();
+                    }
+                }
+                
+                if (e.key === '/' && document.activeElement.tagName === 'BODY') {
+                    e.preventDefault();
+                    const projectsSection = document.getElementById('projects');
+                    if (projectsSection) projectsSection.scrollIntoView({behavior: 'smooth'});
+                }
+            });
+            
+            // Initial filter setup
+            const allBtn = document.getElementById('filter-all');
+            if (allBtn) allBtn.classList.add('active');
+            
+            // Easter egg: clicking logo goes to top
+            const logo = document.querySelector('.font-display');
+            if (logo) {
+                logo.style.cursor = 'pointer';
+                logo.addEventListener('click', () => {
+                    window.scrollTo({top: 0, behavior: 'smooth'});
+                });
+            }
+            
+            // Random trading stat update for fun
+            setTimeout(() => {
+                const statEls = document.querySelectorAll('.glass .text-4xl');
+                if (statEls.length > 0) {
+                    statEls[0].addEventListener('click', function() {
+                        this.style.transitionDuration = '120ms';
+                        this.textContent = (parseInt(this.textContent) + 1) + '';
+                        setTimeout(() => {
+                            this.style.transitionDuration = '300ms';
+                        }, 200);
+                    });
+                }
+            }, 2000);
+            
+            // Mark that the site is ready
+            console.log('%c[Portfolio] Daniel Zhou portfolio initialized successfully.', 'color:#64748b');
+            
+            // Optional: show a tip in console
+            // console.log('%c[Tip] Press "/" to jump to projects.', 'color:#64748b');
+        }
+        
+        // Boot the site
+        window.onload = function() {
+            initializePortfolio();
+        }
+        
+        // Bonus: expose some functions for testing
+        window.filterPortfolioProjects = filterProjects;
+    </script>
+</body>
+</html>
