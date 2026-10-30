@@ -1,6 +1,6 @@
 # Daniel Zhou — Portfolio
 
-A light, responsive, multi-page portfolio covering software engineering, data analytics, financial technology, and interactive systems.
+A responsive, multi-page portfolio with a Cyber-Fintech palette (midnight #0B0F19, slate #1E293B, neon mint #00E676) covering software engineering, data analytics, financial technology, and interactive systems.
 
 ## Preview
 
