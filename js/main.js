@@ -1,133 +1,99 @@
-// Daniel Zhou Portfolio - Main JS
-// Clean external JS for enhanced interactivity
+// Progressive enhancements: content and downloads also work without JavaScript.
+import { readProjectState, matchesProject } from './project-search.js';
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Additional enhancements beyond inline script
-    initProjectHoverEffects();
-    initScrollProgress();
-    initFilterKeyboardShortcuts();
-    console.log('%c[Portfolio] External JS enhancements loaded.', 'color:#64748b');
-});
-
-function initProjectHoverEffects() {
-    const cards = document.querySelectorAll('#projects-grid .project-card');
-    
+const menu = document.querySelector('.menu-toggle');
+const nav = document.querySelector('#site-nav');
+if (menu && nav) {
+  menu.hidden = false;
+  document.documentElement.classList.add('nav-ready');
+  const close = () => { menu.setAttribute('aria-expanded', 'false'); nav.classList.remove('is-open'); };
+  menu.addEventListener('click', () => {
+    const open = menu.getAttribute('aria-expanded') !== 'true';
+    menu.setAttribute('aria-expanded', String(open));
+    nav.classList.toggle('is-open', open);
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && menu.getAttribute('aria-expanded') === 'true') { close(); menu.focus(); }
+  });
+  document.addEventListener('click', event => { if (!event.target.closest('.nav-wrap')) close(); });
+  window.matchMedia('(min-width:801px)').addEventListener('change', close);
+}
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+if ('IntersectionObserver' in window && !reducedMotion.matches) {
+  const observer = new IntersectionObserver(entries => {
+    for (const entry of entries) if (entry.isIntersecting) { entry.target.classList.add('in-view'); observer.unobserve(entry.target); }
+  }, { threshold: 0.06 });
+  document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
+  document.documentElement.classList.add('motion-ready');
+  window.addEventListener('pageshow', () => document.querySelectorAll('.reveal').forEach(element => {
+    const rect = element.getBoundingClientRect();
+    if (rect.top < innerHeight && rect.bottom > 0) element.classList.add('in-view');
+  }));
+}
+const filters = document.querySelector('.filters');
+const cards = [...document.querySelectorAll('#projects-grid .project-card')];
+if (filters && cards.length) {
+  const input = document.querySelector('#project-search');
+  const clear = document.querySelector('#clear-search');
+  const empty = document.querySelector('.empty-projects');
+  let state = readProjectState(location.search);
+  filters.hidden = false;
+  document.querySelector('.project-search').hidden = false;
+  const render = () => {
+    input.value = state.query;
+    clear.hidden = !state.query;
+    filters.querySelectorAll('button').forEach(item => item.setAttribute('aria-pressed', String(item.dataset.filter === state.category)));
+    let count = 0;
     cards.forEach(card => {
-        // Add subtle tilt effect on mouse move
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = ((e.clientX - rect.left) / rect.width) * 100;
-            const y = ((e.clientY - rect.top) / rect.height) * 100;
-            
-            const rotateX = (50 - y) / 12;
-            const rotateY = (x - 50) / 14;
-            
-            card.style.transition = 'transform 0.1s ease';
-            card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            card.style.transition = 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease';
-            card.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg)';
-        });
-        
-        // Add data on hover for trading flavor
-        card.addEventListener('mouseenter', () => {
-            const header = card.querySelector('h3');
-            if (header && !header.dataset.original) {
-                header.dataset.original = header.textContent;
-            }
-        });
+      const visible = matchesProject({ categories: card.dataset.categories.split('|'), search: card.dataset.search }, state);
+      card.hidden = !visible;
+      if (visible) { card.classList.add('in-view'); count++; }
     });
+    document.querySelector('#project-count').textContent = `${count} ${count === 1 ? 'project' : 'projects'}`;
+    empty.hidden = count !== 0;
+  };
+  const saveState = (mode) => {
+    const url = new URL(location.href);
+    state.category === 'All work' ? url.searchParams.delete('category') : url.searchParams.set('category', state.category);
+    state.query ? url.searchParams.set('q', state.query) : url.searchParams.delete('q');
+    if (url.href !== location.href) history[mode](null, '', url);
+    render();
+  };
+  filters.addEventListener('click', event => {
+    const button = event.target.closest('[data-filter]');
+    if (button) { state.category = button.dataset.filter; saveState('pushState'); }
+  });
+  input.addEventListener('input', () => { state.query = input.value.slice(0,160); saveState('replaceState'); });
+  clear.addEventListener('click', () => { state.query = ''; saveState('replaceState'); input.focus(); });
+  document.querySelector('#reset-projects').addEventListener('click', () => {
+    state = { category: 'All work', query: '' };
+    saveState('pushState');
+    input.focus();
+  });
+  window.addEventListener('popstate', () => { state = readProjectState(location.search); render(); });
+  window.addEventListener('pageshow', () => { state = readProjectState(location.search); render(); });
+  render();
 }
-
-function initScrollProgress() {
-    // Add a very subtle scroll progress indicator on the navbar
-    const nav = document.querySelector('nav');
-    if (!nav) return;
-    
-    const progressBar = document.createElement('div');
-    progressBar.style.cssText = 'position:absolute;bottom:0;left:0;height:1.5px;background:linear-gradient(to right,#14b8a6,#67e8f9);transition:width .08s linear;width:0;z-index:10;';
-    nav.appendChild(progressBar);
-    
-    window.addEventListener('scroll', () => {
-        const scrollTop = window.scrollY;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-        progressBar.style.width = `${scrollPercent}%`;
-    }, { passive: true });
-}
-
-function initFilterKeyboardShortcuts() {
-    // Keyboard shortcuts for project filters
-    document.addEventListener('keydown', (e) => {
-        if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA') return;
-        
-        const grid = document.getElementById('projects-grid');
-        if (!grid) return;
-        
-        if (e.key.toLowerCase() === 'p') {
-            e.preventDefault();
-            const btn = document.getElementById('filter-python');
-            if (btn) btn.click();
-        }
-        
-        if (e.key.toLowerCase() === 't') {
-            e.preventDefault();
-            const btn = document.getElementById('filter-tradingview');
-            if (btn) btn.click();
-        }
-        
-        if (e.key.toLowerCase() === 'a') {
-            e.preventDefault();
-            const btn = document.getElementById('filter-ai');
-            if (btn) btn.click();
-        }
-        
-        if (e.key === '?') {
-            e.preventDefault();
-            const allBtn = document.getElementById('filter-all');
-            if (allBtn) allBtn.click();
-        }
-    });
-    
-    // Tooltip hint
-    const filterBar = document.querySelector('#projects .flex.items-center.gap-x-2');
-    if (filterBar) {
-        filterBar.setAttribute('title', 'Keyboard: P = Python • T = TradingView • A = AI • ? = All');
-    }
-}
-
-// Utility to reset filters (exposed)
-window.resetProjectFilters = function() {
-    const allBtn = document.getElementById('filter-all');
-    if (allBtn) allBtn.click();
-};
-
-// Optional: add some live market feel (demo)
-function addLiveMarketTicker() {
-    const footer = document.querySelector('footer');
-    if (!footer) return;
-    
-    const ticker = document.createElement('div');
-    ticker.className = 'text-[10px] px-5 py-[1px] bg-slate-800 border-t border-slate-700 flex items-center justify-center text-emerald-400 font-mono gap-x-2';
-    ticker.innerHTML = `
-        <span class="font-medium">MARKETS</span> 
-        <span class="text-emerald-300">SPX +0.68%</span> 
-        <span class="text-emerald-300">QQQ +1.12%</span> 
-        <span class="text-emerald-300">BTC +2.7%</span>
-        <span class="text-xs text-slate-500 ml-3">•</span> 
-        <span class="font-medium text-xs">Live data simulated</span>
-    `;
-    
-    footer.parentNode.insertBefore(ticker, footer);
-}
-
-// Run live ticker only on desktop
-if (window.innerWidth > 1024) {
-    setTimeout(() => {
-        if (document.readyState === 'complete') {
-            addLiveMarketTicker();
-        }
-    }, 5200);
+const version = document.querySelector('#resume-version');
+if (version) version.addEventListener('change', () => {
+  const preview = document.querySelector('#resume-preview');
+  const name = version.options[version.selectedIndex].textContent;
+  preview.data = version.value;
+  preview.setAttribute('aria-label', `${name} resume PDF preview`);
+  const fallback = document.createElement('p');
+  const link = document.createElement('a');
+  link.href = version.value;
+  link.textContent = `Open the ${name} resume PDF`;
+  fallback.append('If the embedded preview is unavailable, ', link, '.');
+  preview.replaceChildren(fallback);
+  document.querySelector('#preview-open').href = version.value;
+});
+const copy = document.querySelector('.copy-email');
+if (copy && navigator.clipboard && window.isSecureContext) {
+  copy.hidden = false;
+  copy.addEventListener('click', async () => {
+    const status = document.querySelector('#copy-status');
+    try { await navigator.clipboard.writeText(copy.dataset.email); status.textContent = 'Email address copied.'; }
+    catch { status.textContent = 'Copy unavailable. Select the email address above to copy it.'; }
+  });
 }

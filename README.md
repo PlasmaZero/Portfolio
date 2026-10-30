@@ -1,69 +1,43 @@
-# Daniel Zhou • Portfolio
+# Daniel Zhou — Portfolio
 
-A sleek, modern personal portfolio website showcasing Daniel Zhou's work as a quantitative trader and software engineer.
+A light, responsive, multi-page portfolio covering software engineering, data analytics, financial technology, and interactive systems.
 
-**Live preview:** Open `index.html` in any modern browser.
+## Preview
 
-## ✨ Features
+Use Node.js 20 or later. No installation or third-party packages are needed.
 
-- **Hero** — Bold professional introduction with trading-inspired aesthetic
-- **About** — Professional photo + compelling bio
-- **Skills** — Three-column breakdown of quantitative trading, programming, and infrastructure expertise
-- **Projects** — Six prominent trading & quant projects with:
-  - Filtering (All / Python / TradingView / AI Agents)
-  - Beautiful hover effects + interactive tilt
-  - Direct links to GitHub repos
-  - Live indicators & tags
-- **Journey** — Professional experience timeline
-- **Contact** — Functional contact form (simulated) + social links
-- **Resume Modal** — Beautiful interactive resume viewer + PDF download/print
-
-## 🛠️ Built With
-
-- Tailwind CSS (via CDN)
-- Font Awesome 6
-- Custom CSS + vanilla JS
-- Responsive design (mobile-first)
-- Accessibility considerations
-
-## 📁 Project Structure
-
-```
-Portfolio/
-├── index.html          # Main portfolio site
-├── js/
-│   └── main.js         # Interactivity + enhancements
-├── assets/
-│   ├── profile.jpg     # Professional headshot
-│   └── hero-bg.jpg     # Abstract trading background
-└── README.md
+```sh
+npm run build
+npm run check
+npm run dev
 ```
 
-## 🚀 How to use
+Open http://127.0.0.1:4173/Portfolio/. The same server also serves the site at its root. All generated HTML is committed, so GitHub Pages can serve this repository directly from the root of the `main` branch. Deployment settings are managed separately in GitHub.
 
-1. Open `index.html` directly in your browser
-2. To host:
-   - GitHub Pages: push to `main` branch + enable Pages
-   - Vercel / Netlify: drag-and-drop the folder
-   - Any static hosting
+## Pages
 
-## 📈 Trading Projects Featured
+- Home, Projects, About, Experience, Resume, and Contact each have their own URL.
+- Eight dedicated project pages include context, implementation details, architecture, and source links where available.
+- Project search and category filters can be combined. Their state is stored in the URL for sharing and browser Back/Forward navigation. No-match results offer a one-click reset.
+- The Resume page previews and downloads the original Software Engineering and FinTech PDFs.
+- Contact uses the owner's verified email and social links. It does not simulate form submission.
 
-| Project | Description | Tech |
-|--------|-------------|------|
-| Robinhood Agent | Autonomous AI trading agent using Claude SDK + Robinhood MCP | Python, Claude Agent SDK |
-| CandleView | Modular day-trading engine with strategies, execution, risk mgmt | Python, Alpaca, Tradier |
-| MA/EMA + RSI Trend & Pullback | TradingView indicator for trend & pullback signals | Pine Script v6 |
-| Support & Resistance + Liquidity | Institutional-grade S/R and liquidity zones | Pine Script v6 |
-| Signal Scanner | Multi-asset real-time signal engine | Python |
-| Signal Daytrade | High-conviction intraday signal generator | Python |
+## Editing
 
-## 📝 Notes
+- `scripts/build.mjs`: shared layout and page content.
+- `scripts/projects.mjs`: project descriptions, categories, and source repositories.
+- `css/styles.css`: responsive visual design and motion.
+- `js/main.js`: mobile navigation, project filters, PDF preview selection, and email copy.
+- `assets/resumes/`: the two original PDFs supplied by the owner.
 
-- All projects pulled from [github.com/PlasmaZero](https://github.com/PlasmaZero)
-- The resume modal can be printed / downloaded as PDF
-- Keyboard shortcuts on project filters: `P`, `T`, `A`, `?`
+Run `npm run build` after changing page or project content and commit the generated HTML along with the sources. CSS and browser JS changes do not need a build. `npm run check` checks all local links, metadata, page titles, nested navigation, and PDF signatures.
 
----
+## Content and visual notes
 
-Built with ❤️ and lots of caffeine by Daniel Zhou.
+Biographical details and experience come from the owner's October 2026 resumes and profile notes. Project descriptions are grounded in those resumes and public repository documentation. Student Success Analytics is a course project without a linked public source repository. No trading performance, deployment status, or commercial usage is claimed.
+
+The owner-supplied v2 headshot appears on Home and About, without changes to the original image. GEX uses its repository screenshot, clearly labeled as simulation mode. Other project artwork consists of labeled original schematics.
+
+Cross-document View Transitions enhance page navigation in supporting browsers; standard navigation works elsewhere. Scroll reveals and hover effects respect reduced-motion preferences. Navigation, content, source links, contact links, and downloads remain available without JavaScript. The PDF preview selector, search, and filtering are progressive enhancements.
+
+`404.html` uses the `/Portfolio/` GitHub Pages base path. Update that prefix in the generator if the repository is renamed or moved to a custom domain root.
