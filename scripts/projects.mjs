@@ -1,9 +1,9 @@
 // Copy is grounded in the owner's resumes and public repository documentation.
-// Visuals are original project schematics, not screenshots or live data.
+// GEX uses a repository screenshot in simulation mode; other visuals are schematics.
 export const projects = [
   {
     slug: 'evhunter', name: 'EVHunter', subtitle: 'Making odds easier to compare.', category: 'Full-stack', filters: ['Full-stack', 'Data & finance'], type: 'Full-stack application', visual: 'odds', color: 'mint', repo: 'EVHunter',
-    stack: ['Next.js', 'FastAPI', 'PostgreSQL', 'Redis'],
+    stack: ['Next.js', 'FastAPI', 'PostgreSQL', 'Redis', 'Python', 'TypeScript'],
     summary: 'A full-stack workspace for sports odds comparison, expected-value analysis, and manual bet tracking.',
     overview: 'EVHunter brings odds comparison, pricing calculations, and manual tracking into one application. A Next.js interface connects to a Python API, with PostgreSQL for records and Redis for collection coordination.',
     challenge: 'Odds only become comparable when outcomes, fees, and limits line up. The application also needs to keep monetary records consistent when requests arrive at the same time.',
@@ -69,7 +69,7 @@ export const projects = [
       ['Test the boundaries', 'Checked gamma against numerical derivatives and covered market calendars, upstream failures, and idle stream restarts.']
     ],
     architecture: ['Option-chain providers', 'Pricing + shared polling', 'SSE + Canvas views'],
-    note: 'Dealer positioning is modeled using explicit assumptions. Data latency depends on the provider. The portfolio visual is a schematic, not a market feed.'
+    note: 'Dealer positioning is modeled using explicit assumptions. Data latency depends on the provider. The interface screenshot shows simulation mode, not a live market feed.'
   },
   {
     slug: 'robinhood-agent', name: 'Robinhood Agent', subtitle: 'From a prompt to a tool-driven workflow.', category: 'AI & automation', filters: ['AI & automation'], type: 'Python agent project', visual: 'agent', color: 'lilac', repo: 'Robinhood-Agent',

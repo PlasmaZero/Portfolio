@@ -4,7 +4,7 @@ import { resolve, extname, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
-const types = { '.html':'text/html; charset=utf-8', '.css':'text/css; charset=utf-8', '.js':'text/javascript; charset=utf-8', '.svg':'image/svg+xml', '.pdf':'application/pdf' };
+const types = { '.html':'text/html; charset=utf-8', '.css':'text/css; charset=utf-8', '.js':'text/javascript; charset=utf-8', '.svg':'image/svg+xml', '.pdf':'application/pdf', '.png':'image/png', '.jpg':'image/jpeg', '.webp':'image/webp' };
 const server = createServer(async (request, response) => {
   try {
     let path = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);

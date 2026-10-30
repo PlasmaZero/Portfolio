@@ -18,7 +18,7 @@ Open http://127.0.0.1:4173/Portfolio/. The same server also serves the site at i
 
 - Home, Projects, About, Experience, Resume, and Contact each have their own URL.
 - Eight dedicated project pages include context, implementation details, architecture, and source links where available.
-- Project filters cover full-stack, data & finance, games, and AI & automation.
+- Project search and category filters can be combined. Their state is stored in the URL for sharing and browser Back/Forward navigation. No-match results offer a one-click reset.
 - The Resume page previews and downloads the original Software Engineering and FinTech PDFs.
 - Contact uses the owner's verified email and social links. It does not simulate form submission.
 
@@ -36,8 +36,8 @@ Run `npm run build` after changing page or project content and commit the genera
 
 Biographical details and experience come from the owner's October 2026 resumes and profile notes. Project descriptions are grounded in those resumes and public repository documentation. Student Success Analytics is a course project without a linked public source repository. No trading performance, deployment status, or commercial usage is claimed.
 
-The former placeholder portrait has been removed. An original DZ monogram represents Daniel until a preferred photo is provided. Project artwork consists of labeled original schematics, not screenshots or live data.
+The owner-supplied v2 headshot appears on Home and About, without changes to the original image. GEX uses its repository screenshot, clearly labeled as simulation mode. Other project artwork consists of labeled original schematics.
 
-Cross-document View Transitions enhance page navigation in supporting browsers; standard navigation works elsewhere. Scroll reveals and hover effects respect reduced-motion preferences. Navigation, content, source links, contact links, and downloads remain available without JavaScript. The PDF preview selector and filtering are progressive enhancements.
+Cross-document View Transitions enhance page navigation in supporting browsers; standard navigation works elsewhere. Scroll reveals and hover effects respect reduced-motion preferences. Navigation, content, source links, contact links, and downloads remain available without JavaScript. The PDF preview selector, search, and filtering are progressive enhancements.
 
 `404.html` uses the `/Portfolio/` GitHub Pages base path. Update that prefix in the generator if the repository is renamed or moved to a custom domain root.
